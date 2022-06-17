@@ -6,7 +6,6 @@
 ![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/laniksj/homebrew-tap)  
 
 -   [Description](#description)
--   [Screenshot](#screenshot)
 -   [Install](#install)
 -   [Bugs](#bugs)
 -   [License](#license)
@@ -14,7 +13,7 @@
 
 ## Description
 
-This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae
+This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 
 ## Install
 
