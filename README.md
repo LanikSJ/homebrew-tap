@@ -1,5 +1,6 @@
 # LanikSJ Homebrew 🍻 Tap
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/461fc7358cfd415abf338d475d948157)](https://www.codacy.com/gh/LanikSJ/homebrew-tap/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LanikSJ/homebrew-tap&amp;utm_campaign=Badge_Grade)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/laniksj/homebrew-tap)
 ![GitHub Code Size in Bytes](https://img.shields.io/github/languages/code-size/laniksj/homebrew-tap)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/laniksj/homebrew-tap)
