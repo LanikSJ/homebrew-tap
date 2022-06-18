@@ -2,9 +2,9 @@
 
 ## Supported Versions
 
-| ZSH Version | Supported          |
+| Version | Supported          |
 | ----------- | ------------------ |
-| 5.8         | :white_check_mark: |
+| 7.x.x         | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
