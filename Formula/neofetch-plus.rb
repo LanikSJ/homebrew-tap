@@ -1,4 +1,7 @@
-class Fetchos < Formula
+# typed: false
+# frozen_string_literal: true
+
+class NeofetchPlus < Formula
   desc "Fast, highly customisable system info script based on neofetch"
   homepage "https://github.com/LanikSJ/neofetch"
   url "https://github.com/LanikSJ/neofetch/archive/refs/tags/7.2.0.tar.gz"
@@ -19,6 +22,6 @@ class Fetchos < Formula
 
   test do
     system "#{bin}/neofetch", "--config", "none", "--color_blocks", "off",
-                              "--disable", "wm", "de", "term", "gpu"
+           "--disable", "wm", "de", "term", "gpu"
   end
 end
