@@ -19,7 +19,7 @@ This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 ## Install
 
 ```bash
-brew install LanikSJ/tap/fetchos
+brew install LanikSJ/tap/<formula>
 ```
 
 ## Bugs
