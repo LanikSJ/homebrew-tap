@@ -7,29 +7,34 @@
 ![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/laniksj/homebrew-tap)  
 
 -   [Description](#description)
--   [Install](#install)
+-   [Formulae](#formulae)
+-   [Installation](#installation)
 -   [Bugs](#bugs)
 -   [License](#license)
 -   [Donate](#donate)
 
-## Description
+## 📝 Description
 
 This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 
-## Install
+## 🍻 Formulae
+
+-   `neofetch-plus` 👉 [neofetch](https://github.com/dylanaraps/neofetch) sourced from [tnsicdr](https://github.com/tnsicdr/neofetch)
+
+## 💾 Installation
 
 ```bash
-brew install LanikSJ/tap/<formula>
+brew tap laniksj/tap
 ```
 
-## Bugs
+## 🐛 Bugs
 
 Please report any bugs or issues you find. Thanks!
 
-## License
+## 🗒️ License
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://en.wikipedia.org/wiki/MIT_License)
 
-## Donate
+## 💰 Donate
 
 [![Patreon](https://img.shields.io/badge/patreon-donate-red.svg)](https://www.patreon.com/laniksj/overview)
