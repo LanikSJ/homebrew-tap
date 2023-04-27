@@ -4,8 +4,8 @@
 class NeofetchPlus < Formula
   desc "Fast, highly customisable system info script based on neofetch"
   homepage "https://github.com/LanikSJ/neofetch"
-  url "https://github.com/LanikSJ/neofetch/archive/refs/tags/7.2.2.tar.gz"
-  sha256 "cb7307bc5772aa0b2de028512dabc389b4a4a04bdf1c9af0037d0b2521ecac63"
+  url "https://github.com/LanikSJ/neofetch/archive/refs/tags/7.2.3.tar.gz"
+  sha256 "a11608242e732a71b2bd1c9774178783f021b73ed481a0d065c37f25846ef851"
   license "MIT"
   head "https://github.com/LanikSJ/neofetch.git", branch: "master"
 
@@ -22,6 +22,6 @@ class NeofetchPlus < Formula
 
   test do
     system "#{bin}/neofetch", "--config", "none", "--color_blocks", "off",
-           "--disable", "wm", "de", "term", "gpu"
+      "--disable", "wm", "de", "term", "gpu"
   end
 end
