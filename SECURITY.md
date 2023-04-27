@@ -2,9 +2,10 @@
 
 ## Supported Versions
 
-| Version | Supported          |
-| ----------- | ------------------ |
-| 7.x.x         | :white_check_mark: |
+| Name | Version | Supported       |
+| -----------| ----------- | ------------------ |
+| android-messages-plus | 5.4.x | :white_check_mark: |
+| neofetch-plus | 7.2.x      | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
