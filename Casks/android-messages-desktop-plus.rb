@@ -10,6 +10,7 @@ cask "android-messages-desktop-plus" do
   desc "Android Messages as a Cross-platform Desktop App"
   homepage "https://github.com/LanikSJ/android-messages-desktop"
 
+  conflicts_with cask: "android-messages,orangedrangon-android-messages"
   depends_on arch: :intel
   depends_on arch: :arm64
 
