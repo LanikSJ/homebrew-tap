@@ -1,7 +1,7 @@
 # typed: false
 # frozen_string_literal: true
 
-cask "android-messages-desktop-plus" do
+cask "android-messages-plus" do
   version "5.4.1"
   sha256 :no_check
 
