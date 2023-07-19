@@ -20,7 +20,7 @@ This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 
 ## 🍻 Casks
 
-- `android-messages-desktop-plus` 👉 [Android Messages](https://github.com/OrangeDrangon/android-messages-desktop) with different icons
+- `android-messages-plus` 👉 [Android Messages](https://github.com/OrangeDrangon/android-messages-desktop) with different icons
 
 ## 🍻 Formulae
 
@@ -30,6 +30,12 @@ This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 
 ```bash
 brew tap laniksj/tap
+brew install android-messages-plus
+```
+or
+```bash
+brew tap laniksj/tap
+brew install neofetch-plus
 ```
 
 ## 🐛 Bugs
