@@ -29,13 +29,11 @@ This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 ## 💾 Installation
 
 ```bash
-brew tap laniksj/tap
-brew install android-messages-plus
+brew install laniksj/tap/android-messages-plus
 ```
 or
 ```bash
-brew tap laniksj/tap
-brew install neofetch-plus
+brew install laniksj/tap/neofetch-plus
 ```
 
 ## 🐛 Bugs
