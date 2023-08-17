@@ -32,7 +32,9 @@ This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 ```bash
 brew install laniksj/tap/android-messages-plus
 ```
+
 or
+
 ```bash
 brew install laniksj/tap/lsusb-plus
 brew install laniksj/tap/neofetch-plus
