@@ -24,6 +24,7 @@ This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 
 ## 🍻 Formulae
 
+- `lsusb-plus` 👉 [lsusb](https://github.com/jlhonora/lsusb) with mods from [jlhonora#23](https://github.com/jlhonora/lsusb/pull/23)
 - `neofetch-plus` 👉 [neofetch](https://github.com/dylanaraps/neofetch) sourced from [tnsicdr](https://github.com/tnsicdr/neofetch)
 
 ## 💾 Installation
@@ -33,6 +34,7 @@ brew install laniksj/tap/android-messages-plus
 ```
 or
 ```bash
+brew install laniksj/tap/lsusb-plus
 brew install laniksj/tap/neofetch-plus
 ```
 
