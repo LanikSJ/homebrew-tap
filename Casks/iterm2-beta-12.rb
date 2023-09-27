@@ -1,4 +1,4 @@
-cask "iterm2-beta" do
+cask "iterm2-beta-12" do
   # NOTE: "2" is not a version number, but an intrinsic part of the product name
   version "3.5.0beta12"
   sha256 "147ab108da0360a2207fc6382a703de52949340bbfa0caa55d7625a644d22043"
