@@ -32,6 +32,7 @@ This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 
 ```bash
 brew install laniksj/tap/android-messages-plus
+brew install laniksj/tap/iterm-beta-12
 ```
 
 or
