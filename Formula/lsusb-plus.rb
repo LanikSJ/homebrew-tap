@@ -1,8 +1,8 @@
 class LsusbPlus < Formula
   desc "Utility to display USB bus info"
   homepage "https://github.com/LanikSJ/lsusb"
-  url "https://github.com/LanikSJ/lsusb/archive/refs/tags/1.0.1.tar.gz"
-  sha256 "ac197d054dc685195e1c1fa9c29c8933d04ce4c151bad1ce65fb428a51b3ece7"
+  url "https://github.com/LanikSJ/lsusb/archive/refs/tags/1.0.2.tar.gz"
+  sha256 "972c188ec35dc8fb22639fe14a99dcfc3bd2df4db5e091fa7ac4a794a423cd13"
   license "MIT"
   head "https://github.com/LanikSJ/lsusb", using: :git
 
