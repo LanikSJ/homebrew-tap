@@ -5,7 +5,7 @@ class LsusbPlus < Formula
   sha256 "8d3a57cb8387ad53b146119c7863fea86a8312153e1256b6e6e83366b454bbc6"
   license "MIT"
   head "https://github.com/LanikSJ/lsusb.git", branch: "main"
-  
+
   depends_on :macos
 
   conflicts_with "lsusb", because: "both provide an `lsusb` binary"
