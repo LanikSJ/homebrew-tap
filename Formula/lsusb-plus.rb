@@ -6,6 +6,9 @@ class LsusbPlus < Formula
   license "MIT"
   head "https://github.com/LanikSJ/lsusb", using: :git
 
+  conflicts_with "lsusb", because: "both provide an `lsusb` binary"
+  conflicts_with "usbutils", because: "both provide an `lsusb` binary"
+
   def install
     bin.install "lsusb"
     man8.install "man/lsusb.8"
