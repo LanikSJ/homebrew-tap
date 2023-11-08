@@ -3,7 +3,7 @@
 
 cask "android-messages-plus" do
   version "5.4.2"
-  sha256 :no_check
+  sha256 "5f790e8265e1bafc2803e82252de6faa1356585283c766ac762a2d520970a3ea"
 
   url "https://github.com/LanikSJ/android-messages-desktop/releases/download/#{version}/Android-Messages-v#{version}-mac-universal.zip"
   name "Android Messages"
@@ -11,14 +11,8 @@ cask "android-messages-plus" do
   homepage "https://github.com/LanikSJ/android-messages-desktop"
 
   conflicts_with cask: "android-messages,orangedrangon-android-messages"
-  depends_on arch: :intel
-  depends_on arch: :arm64
 
   app "Android Messages.app"
 
-  uninstall trash: [
-    "~/Library/Application\ Support/Android\ Messages",
-    "~/Library/Preferences/pw.kmr.amd.plist",
-    "~/Library/Saved\ Application\ State/pw.kmr.amd.savedState",
-  ]
+  zap trash: "~/Library/Application Support/android-messages-desktop"
 end
