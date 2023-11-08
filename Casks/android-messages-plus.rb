@@ -17,8 +17,8 @@ cask "android-messages-plus" do
   app "Android Messages.app"
 
   uninstall trash: [
-    "~/Library/Application\ Support/Android\ Messages",
+    "~/Library/Application Support/Android Messages",
     "~/Library/Preferences/pw.kmr.amd.plist",
-    "~/Library/Saved\ Application\ State/pw.kmr.amd.savedState",
+    "~/Library/Saved Application State/pw.kmr.amd.savedState"
   ]
 end
