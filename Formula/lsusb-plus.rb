@@ -1,8 +1,8 @@
 class LsusbPlus < Formula
   desc "List USB devices, just like the Linux lsusb command"
   homepage "https://github.com/LanikSJ/lsusb"
-  url "https://github.com/LanikSJ/lsusb/archive/refs/tags/1.1.1.tar.gz"
-  sha256 "8d3a57cb8387ad53b146119c7863fea86a8312153e1256b6e6e83366b454bbc6"
+  url "https://github.com/LanikSJ/lsusb/archive/refs/tags/1.1.2.tar.gz"
+  sha256 "55505e6f7be005ba2fa0e57eb29c3dd400d0a87549b009ebd6bf1bce518c0cce"
   license "MIT"
   head "https://github.com/LanikSJ/lsusb.git", branch: "main"
 
