@@ -10,7 +10,7 @@ cask "android-messages-plus" do
   desc "Desktop Client for Android Messages"
   homepage "https://github.com/LanikSJ/android-messages-desktop"
 
-  conflicts_with cask: "android-messages,orangedrangon-android-messages"
+  conflicts_with cask: "orangedrangon-android-messages"
 
   app "Android Messages.app"
 
