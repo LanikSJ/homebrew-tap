@@ -1,16 +1,19 @@
-# typed: false
-# frozen_string_literal: true
-
 cask "android-messages-plus" do
-  version "5.4.2"
-  sha256 "5f790e8265e1bafc2803e82252de6faa1356585283c766ac762a2d520970a3ea"
+  version "5.4.3"
+  sha256 "25c9b9297735d65e80592a034aa9de81e733008e7b8838bb36ccbe61fe8d3d19"
 
   url "https://github.com/LanikSJ/android-messages-desktop/releases/download/#{version}/Android-Messages-v#{version}-mac-universal.zip"
   name "Android Messages Desktop"
   desc "Desktop Client for Android Messages"
   homepage "https://github.com/LanikSJ/android-messages-desktop"
 
-  conflicts_with cask: "orangedrangon-android-messages"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  conflicts_with cask: "android-messages"
+  depends_on macos: ">= :high_sierra"
 
   app "Android Messages.app"
 
