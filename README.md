@@ -20,7 +20,7 @@ This is my Homebrew 🍻 Tap where you'll find my custom Casks and Formulae.
 
 ## 🍻 Casks
 
-- `android-messages-plus` 👉 [Android Messages](https://github.com/OrangeDrangon/android-messages-desktop) with different icons
+- `android-messages-plus` 👉 [Android Messages](https://github.com/OrangeDrangon/android-messages-desktop) with new icons from [OrangeDrangon#406](https://github.com/OrangeDrangon/android-messages-desktop/pull/406)
 - `iterm2-beta-12` [iTerm2 Beta](https://github.com/gnachman/iTerm2) frozen at beta 12 which supports MacOS Ventura
 
 ## 🍻 Formulae
