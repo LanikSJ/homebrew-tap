@@ -4,8 +4,8 @@
 class NeofetchPlus < Formula
   desc "Fast, highly customisable system info script based on neofetch"
   homepage "https://github.com/LanikSJ/neofetch"
-  url "https://github.com/LanikSJ/neofetch/archive/refs/tags/7.3.0.tar.gz"
-  sha256 "519bd324693bbd2f5f18824195280df59aec3c0aad81d6fc7c3620720ad0d6a0"
+  url "https://github.com/LanikSJ/neofetch/archive/refs/tags/7.3.1.tar.gz"
+  sha256 "3684df361c06c742c8f0b78c7b9f4802287bf27bdc4aed89106e131e731c6b47"
   license "MIT"
   head "https://github.com/LanikSJ/neofetch.git", branch: "master"
 
