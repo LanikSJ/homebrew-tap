@@ -12,7 +12,11 @@ cask "android-messages-plus" do
     strategy :github_latest
   end
 
-  conflicts_with cask: "android-messages,orangedrangon-android-messages"
+  conflicts_with cask: [
+    "android-messages",
+    "orangedrangon-android-messages"
+  ]
+
   depends_on macos: ">= :high_sierra"
 
   app "Android Messages.app"
