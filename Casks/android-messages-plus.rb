@@ -1,6 +1,6 @@
 cask "android-messages-plus" do
-  version "5.4.3"
-  sha256 "25c9b9297735d65e80592a034aa9de81e733008e7b8838bb36ccbe61fe8d3d19"
+  version "5.4.4"
+  sha256 "5a256bd15b7b25e06b35b6e87df76c521dd74d2a48dc953cf28e868824ef979c"
 
   url "https://github.com/LanikSJ/android-messages-desktop/releases/download/#{version}/Android-Messages-v#{version}-mac-universal.zip"
   name "Android Messages Desktop"
@@ -16,7 +16,6 @@ cask "android-messages-plus" do
     "android-messages",
     "orangedrangon-android-messages"
   ]
-
   depends_on macos: ">= :high_sierra"
 
   app "Android Messages.app"
