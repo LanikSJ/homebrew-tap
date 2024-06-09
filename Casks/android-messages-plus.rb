@@ -14,7 +14,7 @@ cask "android-messages-plus" do
 
   conflicts_with cask: [
     "android-messages",
-    "orangedrangon-android-messages",
+    "orangedrangon-android-messages"
   ]
   depends_on macos: ">= :high_sierra"
 
