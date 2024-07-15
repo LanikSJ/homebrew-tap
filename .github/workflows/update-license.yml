@@ -1,8 +1,8 @@
-name: update-copyright-year
+name: Update License
 
 on:
   schedule:
-    - cron: '0 6 1 1 *' # 08:00 AM on January 1
+    - cron: '0 6 1 1 *' # 06:00 AM on January 1
 
 jobs:
   update-license-year:
