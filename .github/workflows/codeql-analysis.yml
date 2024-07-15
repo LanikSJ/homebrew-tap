@@ -1,4 +1,4 @@
-name: "codeql-analysis"
+name: "CodeQL Analysis"
 
 on:
  push:
@@ -18,7 +18,7 @@ jobs:
      security-events: write
 
    steps:
-   - name: Checkout repository
+   - name: Checkout Repository
      uses: actions/checkout@v4
 
    - name: Initialize CodeQL
