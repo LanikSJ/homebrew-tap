@@ -37,7 +37,6 @@ or
 
 ```bash
 brew install laniksj/tap/lsusb-plus
-brew install laniksj/tap/neofetch-plus
 ```
 
 ## 🐛 Bugs
