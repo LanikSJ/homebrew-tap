@@ -6,13 +6,13 @@
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/laniksj/homebrew-tap)
 ![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/laniksj/homebrew-tap)
 
-- [Description](#description)
-- [Casks](#casks)
-- [Formulae](#formulae)
-- [Installation](#installation)
-- [Bugs](#bugs)
-- [License](#license)
-- [Donate](#donate)
+- [Description](#-description)
+- [Casks](#-casks)
+- [Formulae](#-formulae)
+- [Installation](#-installation)
+- [Bugs](#-bugs)
+- [License](#-license)
+- [Donate](#-donate)
 
 ## 📝 Description
 
