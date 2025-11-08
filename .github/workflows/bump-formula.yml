@@ -25,7 +25,7 @@ jobs:
           formula-name: lsusb
           formula-path: Formula/lsusb-plus.rb
           homebrew-tap: laniksj/homebrew-tap
-          base-branch: main
+          base-branch: master
           download-url: https://github.com/LanikSJ/lsusb/archive/refs/tags/${{ steps.extract-version.outputs.tag-name }}.tar.gz
           commit-message: |
             {{formulaName}} {{version}}
