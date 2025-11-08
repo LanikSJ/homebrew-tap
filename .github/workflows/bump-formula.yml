@@ -22,9 +22,9 @@ jobs:
 
       - uses: mislav/bump-homebrew-formula-action@v3
         with:
-          formula-name: lsusb
+          formula-name: lsusb-plus
           formula-path: Formula/lsusb-plus.rb
           homebrew-tap: laniksj/homebrew-tap
-          base-branch: master
+          base-branch: main
         env:
           COMMITTER_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
