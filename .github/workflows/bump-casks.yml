@@ -1,4 +1,5 @@
-name: bump-casks
+name: Bump Casks
+
 on:
   schedule:
     # Time is UTC, so below is running everyday at 8AM and 8PM PST
