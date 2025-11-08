@@ -1,11 +1,12 @@
 name: Bump Formula
+
 permissions:
   contents: read
   pull-requests: write
 
 on:
-  # push:
-  #   tags: ['*']
+  push:
+    tags: ['*']
   workflow_dispatch:
 
 jobs:
