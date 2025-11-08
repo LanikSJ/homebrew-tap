@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  homebrew:
+  bump-formula:
     name: Bump Homebrew Formula
     runs-on: ubuntu-latest
     steps:
