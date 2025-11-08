@@ -15,3 +15,5 @@ jobs:
           token: ${{secrets.HOMEBREW_TOKEN}}
           tap: laniksj/homebrew-tap
           formula: lsusb-plus
+          tag: ${{ github.event.release.tag_name }}
+          revision: ${{ github.event.release.target_commitish }}
