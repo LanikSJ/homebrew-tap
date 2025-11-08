@@ -1,8 +1,8 @@
 name: Bump Formula
 
 on:
-  release:
-      types: [ released ]
+  # release:
+  #     types: [ released ]
   workflow_dispatch:  
 
 jobs:
