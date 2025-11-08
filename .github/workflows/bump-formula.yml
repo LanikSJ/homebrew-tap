@@ -1,24 +1,17 @@
 name: Bump Formula
 
 on:
-  # release:
-  #     types: [ released ]
-  workflow_dispatch:  
+  push:
+    tags: ['*']
+  workflow_dispatch:
 
 jobs:
-  homebrew:
+  bump-formula:
     name: Bump Homebrew Formula
-    # Skip this job in case of git pushes to prerelease tags
-    if: ${{ github.event_name != 'push' || !contains(github.ref, '-') }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
-      - uses: mislav/bump-homebrew-formula-action@v3
+      - uses: dawidd6/action-homebrew-bump-formula@v5
         with:
-          formula-name: lsusb-plus
-          formula-path: Formula/lsusb-plus.rb
-          homebrew-tap: laniksj/homebrew-tap
-          base-branch: main
-        env:
-          COMMITTER_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
+          token: ${{secrets.HOMEBREW_TOKEN}}
+          tap: laniksj/homebrew-tap
+          formula: lsusb-plus
