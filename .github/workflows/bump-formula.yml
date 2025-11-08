@@ -1,8 +1,8 @@
 name: Bump Formula
 
 on:
-  release:
-      types: [ released ]
+  # release:
+  #     types: [ released ]
   workflow_dispatch:  
 
 jobs:
@@ -14,12 +14,6 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Extract Version
-        id: extract-version
-        # Strip a string prefix from the git tag name:
-        run: |
-          echo "tag-name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-
       - uses: mislav/bump-homebrew-formula-action@v3
         with:
           formula-name: lsusb-plus
