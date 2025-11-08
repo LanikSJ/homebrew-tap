@@ -25,5 +25,6 @@ jobs:
           formula-name: lsusb
           formula-path: Formula/lsusb-plus.rb
           homebrew-tap: laniksj/homebrew-tap
+          base-branch: master
         env:
           COMMITTER_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
