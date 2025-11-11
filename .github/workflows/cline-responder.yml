@@ -27,7 +27,7 @@ jobs:
 
       - name: Checkout repository
         if: steps.detect.outputs.hit == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Node v20 is needed for Cline CLI on GitHub Actions Linux
       - name: Setup Node.js
