@@ -16,7 +16,7 @@ jobs:
     - uses: macauley/action-homebrew-bump-cask@445c42390d790569d938f9068d01af39ca030feb # v1.0.0
       with:
         # Authentication token to use for pushing changes; use the built-in GITHUB_TOKEN or define a HOMEBREW_TOKEN secret
-        token: ${{secrets.GITHUB_TOKEN}}
+        token: ${{ secrets.HOMEBREW_TOKEN }}
         # Bump all outdated casks in this tap
         tap: laniksj/homebrew-tap
         # Bump only these casks if outdated
