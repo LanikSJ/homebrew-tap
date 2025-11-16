@@ -1,0 +1,73 @@
+name: Restyled
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - closed
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # For non-forks, we will maintain a sibling PR
+  restyled:
+    if: |
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - uses: restyled-io/actions/setup@058db90a6d6222bce59609eabe186eafcc96e809 # v4.4.1
+      - id: restyler
+        uses: restyled-io/actions/run@058db90a6d6222bce59609eabe186eafcc96e809 # v4.4.1
+        with:
+          fail-on-differences: true
+
+      - if: ${{ !cancelled() && steps.restyler.outputs.success == 'true' }}
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          base: ${{ steps.restyler.outputs.restyled-base }}
+          branch: ${{ steps.restyler.outputs.restyled-head }}
+          title: ${{ steps.restyler.outputs.restyled-title }}
+          body: ${{ steps.restyler.outputs.restyled-body }}
+          labels: "restyled"
+          reviewers: ${{ github.event.pull_request.user.login }}
+          delete-branch: true
+
+  # For forks, we will only run (and print git-am instructions)
+  restyled-fork:
+    if: |
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: restyled-io/actions/setup@058db90a6d6222bce59609eabe186eafcc96e809 # v4.4.1
+      - uses: restyled-io/actions/run@058db90a6d6222bce59609eabe186eafcc96e809 # v4.4.1
+        with:
+          fail-on-differences: true
+
+  # On closed events clean up any leftover Restyled PRs
+  restyled-cleanup:
+    if: ${{ github.event.action == 'closed' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: restyled-io/actions/setup@058db90a6d6222bce59609eabe186eafcc96e809 # v4.4.1
+      - id: restyler
+        uses: restyled-io/actions/run@058db90a6d6222bce59609eabe186eafcc96e809 # v4.4.1
+      - run: gh --repo "$REPO" pr close "$BRANCH" --delete-branch || true
+        env:
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ steps.restyler.outputs.restyled-head }}
+          GH_TOKEN: ${{ github.token }}
