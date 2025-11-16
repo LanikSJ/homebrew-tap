@@ -14,9 +14,12 @@ jobs:
     name: Bump Homebrew Formula
     runs-on: ubuntu-latest
     steps:
-      - uses: dawidd6/action-homebrew-bump-formula@v5
+      - uses: dawidd6/action-homebrew-bump-formula@3428a0601bba3173ec0bdcc945be23fa27aa4c31 #v5
         with:
-          token: ${{secrets.HOMEBREW_TOKEN}}
+          # Authentication token to use for pushing changes; use the built-in GITHUB_TOKEN or define a HOMEBREW_TOKEN secret
+          token: ${{ secrets.HOMEBREW_TOKEN }}
+          # Bump all outdated casks in this tap
           tap: laniksj/homebrew-tap
+          # Bump only these formulae if outdated
           formula: lsusb-plus
           livecheck: true
