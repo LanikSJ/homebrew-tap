@@ -1,0 +1,55 @@
+# Cline Rules for homebrew-tap Repository
+
+## Repository Overview
+
+homebrew-tap contains custom Homebrew formulas and casks.
+
+## Code Standards and Practices
+
+### Formula Standards
+
+- Follow Homebrew formula DSL conventions
+- Implement proper dependency declarations
+- Include bottle declarations for common platforms
+- Test formula installations across different macOS versions
+
+### Documentation Standards
+
+- Include clear installation instructions for each formula/cask
+- Document formula options, dependencies, and conflicts
+- Provide version update procedures
+- Use markdown formatting consistently
+
+### Markdown Compliance Requirements
+
+- **ALL markdown files (.md) MUST pass markdownlint validation with zero errors or warnings**
+- Run `markdownlint <filename>` on every markdown file before considering it complete
+- Follow the project's `.markdownlint.json` configuration strictly
+- Address ALL markdownlint issues immediately - no exceptions or workarounds
+- Common requirements include:
+  - Maximum line length of 80 characters (MD013)
+  - Consistent heading styles and hierarchy
+  - Proper list formatting and indentation
+  - Blank lines around headings and code blocks
+  - Consistent link and reference formatting
+  - No trailing whitespace
+  - Files must end with newlines
+  - Proper table formatting when applicable
+- Use `markdownlint --fix <filename>` for auto-fixable issues when available
+- Validate markdown files in CI/CD pipelines where applicable
+
+## Development Guidelines
+
+### When Making Changes
+
+- Preserve existing functionality unless explicitly asked to change it
+- Update documentation when adding new formulas or modifying existing ones
+- Test formula installations and functionality
+- **Always run markdownlint and fix all issues in markdown files before considering changes complete**
+
+### Homebrew Standards
+
+- Maintain compatibility with current Homebrew versions
+- Implement proper resource and bottle handling
+- Follow Homebrew naming and organizational conventions
+- Test formulas across different macOS architectures
