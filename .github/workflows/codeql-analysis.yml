@@ -1,12 +1,25 @@
 name: "CodeQL Analysis"
 
 on:
- push:
-   branches:
-     - main
- pull_request:
-   branches:
-     - main
+  push:
+    branches:
+      - main
+    paths:
+      - "**.rb"
+      - "**.sh"
+      - ".github/workflows/codeql-analysis.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**.rb"
+      - "**.sh"
+      - ".github/workflows/codeql-analysis.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
  analyze:
@@ -20,6 +33,15 @@ jobs:
    steps:
    - name: Checkout Repository
      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+   - name: Cache CodeQL Databases
+     id: cache-codeql
+     uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+     with:
+       path: ~/codeql-runner/codeql/databases
+       key: codeql-${{ runner.os }}-ruby-${{ hashFiles('**/*.rb') }}
+       restore-keys: |
+         codeql-${{ runner.os }}-ruby-
 
    - name: Initialize CodeQL
      uses: github/codeql-action/init@cf1bb45a277cb3c205638b2cd5c984db1c46a412 # v4.31.7
