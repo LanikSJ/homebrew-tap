@@ -36,7 +36,7 @@ jobs:
 
    - name: Cache CodeQL Databases
      id: cache-codeql
-     uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5.0.2
+     uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
      with:
        path: ~/codeql-runner/codeql/databases
        key: codeql-${{ runner.os }}-ruby-${{ hashFiles('**/*.rb') }}
@@ -44,10 +44,10 @@ jobs:
          codeql-${{ runner.os }}-ruby-
 
    - name: Initialize CodeQL
-     uses: github/codeql-action/init@cdefb33c0f6224e58673d9004f47f7cb3e328b89 # v4.31.10
+     uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4.32.4
      with:
        languages: ruby
        # config-file: ./.github/codeql/codeql-config.yml
 
    - name: Perform CodeQL Analysis
-     uses: github/codeql-action/analyze@cdefb33c0f6224e58673d9004f47f7cb3e328b89 # v4.31.10
+     uses: github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4.32.4
