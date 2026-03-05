@@ -132,7 +132,7 @@ jobs:
           # Run brew audit on all formulas
           for formula in Formula/*.rb; do
             echo "Auditing formula: $formula"
-            brew audit --new-formula "./$formula" || {
+            brew audit --new "./$formula" || {
               echo "Audit failed for $formula"
               exit 1
             }
