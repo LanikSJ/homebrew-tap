@@ -13,7 +13,9 @@ class FopRs < Formula
   end
 
   def install
-    bin.install "fop"
+    # The binary is named based on the URL, so we need to rename it
+    bin.install "fop-#{version}-macos-#{Hardware::CPU.arch}"
+    bin.install_symlink "fop-#{version}-macos-#{Hardware::CPU.arch}" => "fop"
     bin.install_symlink "fop" => "fop-rs"
   end
 

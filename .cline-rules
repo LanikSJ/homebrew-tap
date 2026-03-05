@@ -46,6 +46,8 @@ homebrew-tap contains custom Homebrew formulas and casks.
 - Update documentation when adding new formulas or modifying existing ones
 - Test formula installations and functionality
 - **Always run markdownlint and fix all issues in markdown files before considering changes complete**
+- **Only make file changes - do not automatically commit changes unless explicitly requested**
+- **Use Angular-style commit messages when committing changes**
 
 ### Homebrew Standards
 
