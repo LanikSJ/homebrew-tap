@@ -42,8 +42,8 @@ jobs:
             # Extract formula name from file path
             formula_name=$(basename "$formula" .rb)
             
-            # Install the formula
-            brew install --build-from-source "./$formula" || {
+            # Install the formula from the current tap
+            brew install --build-from-source "laniksj/tap/$formula_name" || {
               echo "Failed to install $formula_name"
               exit 1
             }
