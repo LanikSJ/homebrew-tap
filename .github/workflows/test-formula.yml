@@ -84,8 +84,10 @@ jobs:
           # Run brew audit on all formulas
           for formula in Formula/*.rb; do
             echo "Auditing formula: $formula"
-            brew audit --new "./$formula" || {
-              echo "Audit failed for $formula"
+            # Extract formula name from file path
+            formula_name=$(basename "$formula" .rb)
+            brew audit --new "$formula_name" || {
+              echo "Audit failed for $formula_name"
               exit 1
             }
           done
