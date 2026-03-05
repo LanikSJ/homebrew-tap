@@ -17,9 +17,6 @@ class FopRs < Formula
     bin.install "fop-#{version}-macos-#{Hardware::CPU.arch}"
     bin.install_symlink "fop-#{version}-macos-#{Hardware::CPU.arch}" => "fop"
     bin.install_symlink "fop" => "fop-rs"
-    
-    # Make the binary executable
-    bin/"fop".chmod 0755
   end
 
   test do
