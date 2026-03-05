@@ -1,0 +1,109 @@
+name: Test Formula
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Formula/**'
+  workflow_dispatch:
+
+jobs:
+  test-formula:
+    name: Test Homebrew Formula
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        include:
+          - os: macos-latest
+            arch: x86_64
+          - os: macos-latest
+            arch: arm64
+          - os: ubuntu-latest
+            arch: x86_64
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@350be6262eefaa8e9daa68f11d48b7fa18224208 # latest
+
+      - name: Install formula dependencies
+        run: |
+          brew install git
+          brew install curl
+
+      - name: Test formula installation
+        run: |
+          # Test each formula in the Formula directory
+          for formula in Formula/*.rb; do
+            echo "Testing formula: $formula"
+            # Extract formula name from file path
+            formula_name=$(basename "$formula" .rb)
+            
+            # Skip macOS-only formulas on Linux
+            if [[ "$RUNNER_OS" == "Linux" ]]; then
+              if grep -q "depends_on :macos" "$formula"; then
+                echo "Skipping macOS-only formula $formula_name on Linux"
+                continue
+              fi
+            fi
+            
+            # Install the formula from the current tap
+            brew install --build-from-source "laniksj/tap/$formula_name" || {
+              echo "Failed to install $formula_name"
+              exit 1
+            }
+            
+            # Make the binary executable before testing (for Linux compatibility)
+            if [ -f "/home/linuxbrew/.linuxbrew/bin/$formula_name" ]; then
+              chmod +x "/home/linuxbrew/.linuxbrew/bin/$formula_name"
+            fi
+            
+            # Test the formula
+            brew test "$formula_name" || {
+              echo "Failed to test $formula_name"
+              exit 1
+            }
+            
+            # Uninstall the formula
+            brew uninstall "$formula_name"
+          done
+
+      - name: Test formula syntax
+        run: |
+          # Check formula syntax
+          for formula in Formula/*.rb; do
+            echo "Checking syntax for: $formula"
+            ruby -c "$formula" || {
+              echo "Syntax error in $formula"
+              exit 1
+            }
+          done
+
+  validate-formula:
+    name: Validate Formula
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Validate formula with brew audit
+        run: |
+          # Run brew audit on all formulas
+          for formula in Formula/*.rb; do
+            echo "Auditing formula: $formula"
+            # Extract formula name from file path
+            formula_name=$(basename "$formula" .rb)
+            brew audit --new "$formula_name" || {
+              echo "Audit failed for $formula_name"
+              exit 1
+            }
+          done
+
