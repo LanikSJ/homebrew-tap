@@ -1,4 +1,4 @@
-name: Test Formula and Cask
+name: Test Formula
 
 on:
   pull_request:
