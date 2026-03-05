@@ -43,9 +43,11 @@ jobs:
             formula_name=$(basename "$formula" .rb)
             
             # Skip macOS-only formulas on Linux
-            if [[ "$RUNNER_OS" == "Linux" && $(grep -q "depends_on :macos" "$formula") ]]; then
-              echo "Skipping macOS-only formula $formula_name on Linux"
-              continue
+            if [[ "$RUNNER_OS" == "Linux" ]]; then
+              if grep -q "depends_on :macos" "$formula"; then
+                echo "Skipping macOS-only formula $formula_name on Linux"
+                continue
+              fi
             fi
             
             # Install the formula from the current tap
