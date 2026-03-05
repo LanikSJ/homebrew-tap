@@ -1,0 +1,162 @@
+name: Test Formula and Cask
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Formula/**'
+      - 'Casks/**'
+  workflow_dispatch:
+
+jobs:
+  test-formula:
+    name: Test Homebrew Formula
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        include:
+          - os: macos-latest
+            arch: x86_64
+          - os: macos-latest
+            arch: arm64
+          - os: ubuntu-latest
+            arch: x86_64
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Install formula dependencies
+        run: |
+          brew install git
+          brew install curl
+
+      - name: Test formula installation
+        run: |
+          # Test each formula in the Formula directory
+          for formula in Formula/*.rb; do
+            echo "Testing formula: $formula"
+            # Extract formula name from file path
+            formula_name=$(basename "$formula" .rb)
+            
+            # Install the formula
+            brew install --build-from-source "./$formula" || {
+              echo "Failed to install $formula_name"
+              exit 1
+            }
+            
+            # Test the formula
+            brew test "$formula_name" || {
+              echo "Failed to test $formula_name"
+              exit 1
+            }
+            
+            # Uninstall the formula
+            brew uninstall "$formula_name"
+          done
+
+      - name: Test formula syntax
+        run: |
+          # Check formula syntax
+          for formula in Formula/*.rb; do
+            echo "Checking syntax for: $formula"
+            ruby -c "$formula" || {
+              echo "Syntax error in $formula"
+              exit 1
+            }
+          done
+
+  test-cask:
+    name: Test Homebrew Cask
+    runs-on: macos-latest
+    if: contains(github.event.head_commit.modified, 'Casks/') || contains(github.event.head_commit.added, 'Casks/') || contains(github.event.head_commit.removed, 'Casks/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Test cask installation
+        run: |
+          # Test each cask in the Casks directory
+          for cask in Casks/*.rb; do
+            echo "Testing cask: $cask"
+            # Extract cask name from file path
+            cask_name=$(basename "$cask" .rb)
+            
+            # Install the cask
+            brew install --cask --no-quarantine "./$cask" || {
+              echo "Failed to install $cask_name"
+              exit 1
+            }
+            
+            # Test the cask
+            brew test "$cask_name" || {
+              echo "Failed to test $cask_name"
+              exit 1
+            }
+            
+            # Uninstall the cask
+            brew uninstall "$cask_name"
+          done
+
+      - name: Test cask syntax
+        run: |
+          # Check cask syntax
+          for cask in Casks/*.rb; do
+            echo "Checking syntax for: $cask"
+            ruby -c "$cask" || {
+              echo "Syntax error in $cask"
+              exit 1
+            }
+          done
+
+  validate-formula:
+    name: Validate Formula
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Validate formula with brew audit
+        run: |
+          # Run brew audit on all formulas
+          for formula in Formula/*.rb; do
+            echo "Auditing formula: $formula"
+            brew audit --new-formula "./$formula" || {
+              echo "Audit failed for $formula"
+              exit 1
+            }
+          done
+
+  validate-cask:
+    name: Validate Cask
+    runs-on: macos-latest
+    if: contains(github.event.head_commit.modified, 'Casks/') || contains(github.event.head_commit.added, 'Casks/') || contains(github.event.head_commit.removed, 'Casks/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Validate cask with brew audit
+        run: |
+          # Run brew audit on all casks
+          for cask in Casks/*.rb; do
+            echo "Auditing cask: $cask"
+            brew audit --new-cask "./$cask" || {
+              echo "Audit failed for $cask"
+              exit 1
+            }
+          done
