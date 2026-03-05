@@ -1,5 +1,5 @@
 class FopRs < Formula
-  desc "Fast, Rust-based filter list optimizer for ad blockers"
+  desc "Filter Orderer and Preener - Fast, Rust-based filter list optimizer for ad blockers"
   homepage "https://github.com/ryanbr/fop-rs"
   url "https://github.com/ryanbr/fop-rs/releases/download/v5.0.2/fop-5.0.2-macos-x86_64"
   sha256 "7bbc26418a5e4f54381c9e7a88d9c30e07b782952419f2084bfb33f17c2cce25"
@@ -26,6 +26,6 @@ class FopRs < Formula
     
     # Test basic functionality
     output = shell_output("#{bin}/fop --help")
-    assert_match "Fast, Rust-based filter list optimizer for ad blockers", output
+    assert_match "FOP - Filter Orderer and Preener", output
   end
 end
