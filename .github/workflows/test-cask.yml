@@ -1,0 +1,77 @@
+name: Test Homebrew Cask
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Casks/**'
+  workflow_dispatch:
+
+jobs:
+  test-cask:
+    name: Test Homebrew Cask
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Test cask installation
+        run: |
+          # Test each cask in the Casks directory
+          for cask in Casks/*.rb; do
+            echo "Testing cask: $cask"
+            # Extract cask name from file path
+            cask_name=$(basename "$cask" .rb)
+            
+            # Install the cask
+            brew install --cask "./$cask" || {
+              echo "Failed to install $cask_name"
+              exit 1
+            }
+            
+            # Test the cask
+            brew test "$cask_name" || {
+              echo "Failed to test $cask_name"
+              exit 1
+            }
+            
+            # Uninstall the cask
+            brew uninstall "$cask_name"
+          done
+
+      - name: Test cask syntax
+        run: |
+          # Check cask syntax
+          for cask in Casks/*.rb; do
+            echo "Checking syntax for: $cask"
+            ruby -c "$cask" || {
+              echo "Syntax error in $cask"
+              exit 1
+            }
+          done
+
+  validate-cask:
+    name: Validate Cask
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Validate cask with brew audit
+        run: |
+          # Run brew audit on all casks
+          for cask in Casks/*.rb; do
+            echo "Auditing cask: $cask"
+            brew audit --new-cask "./$cask" || {
+              echo "Audit failed for $cask"
+              exit 1
+            }
+          done
