@@ -48,6 +48,11 @@ jobs:
               exit 1
             }
             
+            # Make the binary executable before testing (for Linux compatibility)
+            if [ -f "/home/linuxbrew/.linuxbrew/bin/$formula_name" ]; then
+              chmod +x "/home/linuxbrew/.linuxbrew/bin/$formula_name"
+            fi
+            
             # Test the formula
             brew test "$formula_name" || {
               echo "Failed to test $formula_name"
