@@ -2,7 +2,7 @@ name: Bump Casks
 
 on:
   schedule:
-    # Time is UTC, so below is running everyday at 8AM and 8PM PST
+    # Time is UTC, so below is running everyday at 4AM and 4PM PST
     - cron:  '0 4,16 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
