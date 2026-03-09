@@ -1,13 +1,15 @@
 name: Bump Formula
 
+on:
+  schedule:
+    # Time is UTC, so below is running everyday at 5AM and 5PM PST
+    - cron:  '0 5,17 * * *'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 permissions:
   contents: read
   pull-requests: write
-
-on:
-  push:
-    tags: ['*']
-  workflow_dispatch:
 
 jobs:
   bump-formula:
@@ -21,5 +23,5 @@ jobs:
           # Bump all outdated casks in this tap
           tap: laniksj/homebrew-tap
           # Bump only these formulae if outdated
-          formula: lsusb-plus
+          formula: fop-rs, lsusb-plus
           livecheck: true
