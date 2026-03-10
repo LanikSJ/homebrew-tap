@@ -3,9 +3,17 @@ name: Bump Casks
 on:
   schedule:
     # Time is UTC, so below is running everyday at 4AM and 4PM PST
-    - cron:  '0 4,16 * * *'
+    - cron: "0 4,16 * * *"
   # Allows you to run this workflow manually from the Actions tab
+  push:
+    paths:
+      - ".github/workflows/bump-casks.yml"
   workflow_dispatch:
+    # Run when this workflow file is changed
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   bump-casks:
