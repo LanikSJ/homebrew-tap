@@ -2,8 +2,12 @@ name: Bump Formula
 
 on:
   schedule:
-    # Time is UTC, so below is running everyday at 5AM and 5PM PST
-    - cron:  '0 5,17 * * *'
+    # Time is UTC, so below is running everyday at 4AM and 4PM PST
+    - cron: "0 4,16 * * *"
+  # Run when this workflow file is changed
+  push:
+    paths:
+      - ".github/workflows/bump-formula.yml"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -18,7 +22,8 @@ jobs:
     steps:
       - uses: dawidd6/action-homebrew-bump-formula@1446dca236b0440c6f02723a3f14f13be2c04ab0 #v7
         with:
-          # Authentication token to use for pushing changes; use the built-in GITHUB_TOKEN or define a HOMEBREW_TOKEN secret
+          # Authentication token to use for pushing changes; use the built-in
+          # GITHUB_TOKEN or define a HOMEBREW_TOKEN secret
           token: ${{ secrets.HOMEBREW_TOKEN }}
           # Bump all outdated casks in this tap
           tap: laniksj/homebrew-tap
