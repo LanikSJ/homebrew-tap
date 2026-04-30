@@ -1,6 +1,6 @@
 cask "android-messages-plus" do
-  version "6.0.1"
-  sha256 "3e4f90b23acfbd35b19054fb6eff69c8a4b55e86792ece64f8f0c6bea92badd3"
+  version "6.0.2"
+  sha256 "9fd1c3710d213933d3cf8f1501f98bcfcb9899473a55a9673448d7179023db81"
 
   url "https://github.com/LanikSJ/android-messages-desktop/releases/download/#{version}/Android-Messages-v#{version}-mac-universal.zip"
   name "Android Messages Desktop"
