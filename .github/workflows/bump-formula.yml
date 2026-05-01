@@ -1,14 +1,12 @@
 name: Bump Formula
 
 on:
-  # schedule:
-    # Time is UTC, so below is running everyday at 4AM and 4PM PST
-    # - cron: "0 4,16 * * *"
-  # Run when this workflow file is changed
-  # push:
-  #   paths:
-  #     - ".github/workflows/bump-formula.yml"
-  # Allows you to run this workflow manually from the Actions tab
+  # Schedule to run at 4AM and 4PM PST everyday
+  schedule:
+    - cron: "0 4,16 * * *"
+  push:
+    paths:
+      - ".github/workflows/bump-formula.yml"
   workflow_dispatch:
 
 permissions:
