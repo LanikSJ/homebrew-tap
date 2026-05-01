@@ -18,7 +18,7 @@ jobs:
     name: Bump Homebrew Formula
     runs-on: ubuntu-latest
     steps:
-      - uses: LanikSJ/homebrew-bump-formula@80accbc6945f51f07d3389b259124e185ca01ecd # v1.0.2
+      - uses: LanikSJ/homebrew-bump-formula@dc9f66f838da0e4f7b795789a6887a6fbf2267d4 # v1.0.4
         with:
           # Authentication token to use for pushing changes; use the built-in
           # GITHUB_TOKEN or define a HOMEBREW_TOKEN secret
