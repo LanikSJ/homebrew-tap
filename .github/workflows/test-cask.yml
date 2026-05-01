@@ -72,7 +72,7 @@ jobs:
           for cask in Casks/*.rb; do
             echo "Auditing Cask: $cask"
             cask_name=$(basename "$cask" .rb)
-            brew audit --new --cask "$cask_name" || {
+            brew audit --cask "$cask_name" || {
               echo "Audit failed for $cask"
               exit 1
             }
