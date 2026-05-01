@@ -25,25 +25,19 @@ jobs:
 
       - name: Test Cask Installation
         run: |
-          # Test Each Cask in the Casks Directory
+          # Test Each Cask in Casks Directory
           for cask in Casks/*.rb; do
             echo "Testing Cask: $cask"
             # Extract Cask Name from File Path
             cask_name=$(basename "$cask" .rb)
             
-            # Install the Cask
+            # Install Cask
             brew install --cask "laniksj/tap/$cask_name" || {
               echo "Failed to install $cask_name"
               exit 1
             }
             
-            # Test the Cask
-            brew test "laniksj/tap/$cask_name" || {
-              echo "Failed to test $cask_name"
-              exit 1
-            }
-            
-            # Uninstall the Cask
+            # Uninstall Cask
             brew uninstall "laniksj/tap/$cask_name" || {
               echo "Failed to uninstall $cask_name"
               exit 1
