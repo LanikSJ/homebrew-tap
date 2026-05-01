@@ -17,39 +17,42 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@main # latest
 
-      - name: Test cask installation
+      - name: Test Cask Installation
         run: |
-          # Test each cask in the Casks directory
+          # Test Each Cask in the Casks Directory
           for cask in Casks/*.rb; do
-            echo "Testing cask: $cask"
-            # Extract cask name from file path
+            echo "Testing Cask: $cask"
+            # Extract Cask Name from File Path
             cask_name=$(basename "$cask" .rb)
             
-            # Install the cask
+            # Install the Cask
             brew install --cask "laniksj/tap/$cask_name" || {
               echo "Failed to install $cask_name"
               exit 1
             }
             
-            # Test the cask
-            brew test "$cask_name" || {
+            # Test the Cask
+            brew test "laniksj/tap/$cask_name" || {
               echo "Failed to test $cask_name"
               exit 1
             }
             
-            # Uninstall the cask
-            brew uninstall "$cask_name"
+            # Uninstall the Cask
+            brew uninstall "laniksj/tap/$cask_name" || {
+              echo "Failed to uninstall $cask_name"
+              exit 1
+            }
           done
 
-      - name: Test cask syntax
+      - name: Test Cask Syntax
         run: |
-          # Check cask syntax
+          # Check Cask Syntax
           for cask in Casks/*.rb; do
             echo "Checking syntax for: $cask"
             ruby -c "$cask" || {
@@ -63,17 +66,17 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@main # latest
 
-      - name: Validate cask with brew audit
+      - name: Validate Cask with Brew Audit
         run: |
-          # Run brew audit on all casks
+          # Run Brew Audit on All Casks
           for cask in Casks/*.rb; do
-            echo "Auditing cask: $cask"
+            echo "Auditing Cask: $cask"
             cask_name=$(basename "$cask" .rb)
             brew audit --new --cask "$cask_name" || {
               echo "Audit failed for $cask"
