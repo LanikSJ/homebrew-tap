@@ -22,7 +22,7 @@ jobs:
         uses: LanikSJ/homebrew-bump-cask@d5866213d3bef867ee98352732bc26ea165c66c1 # v1
         with:
           # Authentication token to use for pushing changes; use the built-in GITHUB_TOKEN or define a HOMEBREW_TOKEN secret
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.HOMEBREW_TOKEN }}
           user_name: ${{ github.actor }}
           user_email: ${{ github.actor }}@users.noreply.github.com
           # Bump all outdated casks in this tap
