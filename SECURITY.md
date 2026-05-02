@@ -5,7 +5,8 @@
 | Name | Version | Supported |
 | ----------- | ----------- | ------------------ |
 | android-messages-plus | 5.4.x | :white_check_mark: |
-| neofetch-plus | 7.2.x | :white_check_mark: |
+| fop-rs | 5.x.x | :white_check_mark: |
+| lsusb-plus | 1.1.x | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
