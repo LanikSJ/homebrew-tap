@@ -10,20 +10,19 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
 
 jobs:
   bump-casks:
-    permissions:
-      contents: write
+    name: Bump Homebrew Cask
     runs-on: macos-latest
     steps:
       - name: Homebrew Bump Cask (LanikSJ)
         uses: LanikSJ/homebrew-bump-cask@d5866213d3bef867ee98352732bc26ea165c66c1 # v1
         with:
           # Authentication token to use for pushing changes; use the built-in GITHUB_TOKEN or define a HOMEBREW_TOKEN secret
-          token: ${{ secrets.HOMEBREW_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           # Bump all outdated casks in this tap
           tap: laniksj/homebrew-tap
           # Bump only these casks if outdated
