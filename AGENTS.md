@@ -1,4 +1,4 @@
-# AI Rules & Project Standards for homebrew-tap
+# Agent Rules & Project Standards for homebrew-tap
 
 ## Repository Overview
 
