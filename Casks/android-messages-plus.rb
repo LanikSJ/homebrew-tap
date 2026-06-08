@@ -16,7 +16,7 @@ cask "android-messages-plus" do
     "android-messages",
     "orangedrangon-android-messages",
   ]
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Android Messages.app"
 
