@@ -22,15 +22,15 @@ jobs:
       contents: read # least‑privilege token
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       # Set up Homebrew using the official action (handles env vars automatically)
       - name: Set up Homebrew
-        uses: homebrew/actions/setup-homebrew@5289d4857e180699398c1c0c5cca24882e524d05 # main
+        uses: homebrew/actions/setup-homebrew@main
 
       # Cache Homebrew downloads and taps to speed up CI
       - name: Cache Homebrew
-        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: |
             ~/Library/Caches/Homebrew
@@ -67,14 +67,14 @@ jobs:
           fi
 
       - name: Test Sync Command
-        run: ./cmd/sync --dry-run
+        run: ./cmd/brew-sync --dry-run
         continue-on-error: true # dry‑run may exit non‑zero but should not fail the job
 
       - name: Test Count Command
-        run: ./cmd/count
+        run: ./cmd/brew-count
 
       - name: Verify Scripts Exit Successfully
         run: |
           set -e
-          ./cmd/count
-          ./cmd/sync --dry-run || echo "sync exited with non-zero, acceptable in CI"
+          ./cmd/brew-count
+          ./cmd/brew-sync --dry-run || echo "sync exited with non-zero, acceptable in CI"
