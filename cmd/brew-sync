@@ -20,5 +20,5 @@ done
 if [[ $DRY_RUN -eq 1 ]]; then
   echo "dry-run: brew update && brew upgrade"
 else
-  brew update --auto-update && brew upgrade -y && brew cu -ay && brew cleanup -s --prune=1
+  brew update --auto-update && brew upgrade -y && brew cu -ay --include-mas --cleanup && brew cleanup -s --prune=1
 fi
