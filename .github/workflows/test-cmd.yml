@@ -14,6 +14,9 @@ jobs:
   test-cmd:
     name: Homebrew Tap CI
     runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+      HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
     steps:
       - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
@@ -27,8 +30,6 @@ jobs:
       - name: Add and Trust Homebrew Tap
         run: |
           brew tap laniksj/tap
-          export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
-          export HOMEBREW_NO_AUTO_UPDATE=1
 
       # Verify the brew sync alias exists before running it
       - name: Test Brew Sync Alias (conditional)
@@ -39,9 +40,9 @@ jobs:
             echo "brew sync alias not available, skipping"
           fi
 
+      # Verify the brew count alias exists before running it
       - name: Test Brew Count Alias (conditional)
         run: |
-          # Verify the brew count alias exists before running it
           if brew help count >/dev/null 2>&1; then
             brew count
           else
