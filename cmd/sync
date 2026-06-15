@@ -1,0 +1,5 @@
+#! /bin/bash
+# alias: brew sync
+#:  * `sync` [args...]
+#:    `brew sync` is an alias for `brew update --auto-update && brew upgrade -y && brew cu -ay && brew cleanup -s --prune=1`
+brew update --auto-update && brew upgrade -y && brew cu -ay && brew cleanup -s --prune=1 "$@"

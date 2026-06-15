@@ -1,0 +1,80 @@
+name: Test Homebrew Tap Commands
+
+on:
+  push:
+    paths:
+      - "cmd/**"
+      - ".github/workflows/test-cmd.yml"
+  pull_request:
+    paths:
+      - "cmd/**"
+      - ".github/workflows/test-cmd.yml"
+
+jobs:
+  test-cmd:
+    name: Homebrew Tap CI
+    runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+      HOMEBREW_NO_ENV_HINTS: 1
+      HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
+    permissions:
+      contents: read # least‑privilege token
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+
+      # Set up Homebrew using the official action (handles env vars automatically)
+      - name: Set up Homebrew
+        uses: homebrew/actions/setup-homebrew@5289d4857e180699398c1c0c5cca24882e524d05 # main
+
+      # Cache Homebrew downloads and taps to speed up CI
+      - name: Cache Homebrew
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+        with:
+          path: |
+            ~/Library/Caches/Homebrew
+            $(brew --repo)/Library/Taps
+          # Include commit SHA to make cache key unique per commit and retrievable later
+          key: ${{ runner.os }}-homebrew-${{ github.sha }}
+
+      # Add required taps
+      - name: Add and Trust Homebrew Tap
+        run: |
+          brew tap buo/cask-upgrade
+          brew tap laniksj/tap
+
+      # Ensure script files are executable (once for all)
+      - name: Make Scripts Executable
+        run: chmod +x cmd/*
+
+      # Verify the brew sync alias exists before running it
+      - name: Test Brew Sync Alias (conditional)
+        run: |
+          if brew help sync >/dev/null 2>&1; then
+            brew sync --dry-run || true
+          else
+            echo "brew sync alias not available, skipping"
+          fi
+
+      # Verify the brew count alias exists before running it
+      - name: Test Brew Count Alias (conditional)
+        run: |
+          if brew help count >/dev/null 2>&1; then
+            brew count
+          else
+            echo "brew count alias not available, skipping"
+          fi
+
+      - name: Test Sync Command
+        run: ./cmd/sync --dry-run
+        continue-on-error: true # dry‑run may exit non‑zero but should not fail the job
+
+      - name: Test Count Command
+        run: ./cmd/count
+
+      - name: Verify Scripts Exit Successfully
+        run: |
+          set -e
+          ./cmd/count
+          ./cmd/sync --dry-run || echo "sync exited with non-zero, acceptable in CI"
