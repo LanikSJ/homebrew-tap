@@ -27,7 +27,7 @@ jobs:
         run: |
           # Add the laniksj/tap repository and trust it for subsequent commands
           brew tap laniksj/tap
-          brew trust laniksj/tap
+          # brew trust laniksj/tap
 
       - name: Test Brew Sync Alias (conditional)
         run: |
@@ -57,7 +57,6 @@ jobs:
         run: |
           chmod +x cmd/count
           ./cmd/count
-
 
       - name: Verify Scripts Exit Successfully
         run: |
