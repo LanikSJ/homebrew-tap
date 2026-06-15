@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script provides the custom Homebrew command `brew count`.
+# It simply counts the number of installed formulae/casks.
+brew list | wc -l
