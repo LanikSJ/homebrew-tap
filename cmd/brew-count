@@ -2,5 +2,5 @@
 # This script provides the custom Homebrew command `brew count`.
 # It simply counts the number of installed formulae/casks.
 
-count=$(brew list | wc -l)
+count=$(brew list | wc -l |xargs)
 echo "You have $count packages installed."
