@@ -35,7 +35,8 @@ jobs:
           path: |
             ~/Library/Caches/Homebrew
             $(brew --repo)/Library/Taps
-          key: ${{ runner.os }}-homebrew-${{ hashFiles('**/Brewfile') }}
+          # Include commit SHA to make cache key unique per commit and retrievable later
+          key: ${{ runner.os }}-homebrew-${{ github.sha }}
 
       # Add required taps
       - name: Add and Trust Homebrew Tap
