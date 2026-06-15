@@ -1,0 +1,5 @@
+#! /bin/bash
+# alias: brew count
+#:  * `count` [args...]
+#:    `brew count` is an alias for `brew list | less | wc -l | xargs`
+brew list | less | wc -l | xargs "$@"
