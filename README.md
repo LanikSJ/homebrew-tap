@@ -1,10 +1,10 @@
 # LanikSJ Homebrew 🍻 Tap
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/461fc7358cfd415abf338d475d948157)](https://www.codacy.com/gh/LanikSJ/homebrew-tap/dashboard?utm_source=github.com&utm_medium=referral&utm_content=LanikSJ/homebrew-tap&utm_campaign=Badge_Grade)
-![GitHub Repo Size](https://img.shields.io/github/repo-size/laniksj/homebrew-tap)
-![GitHub Code Size in Bytes](https://img.shields.io/github/languages/code-size/laniksj/homebrew-tap)
-![GitHub Last Commit](https://img.shields.io/github/last-commit/laniksj/homebrew-tap)
-![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/laniksj/homebrew-tap)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/LanikSJ/homebrew-tap)
+![GitHub Code Size in Bytes](https://img.shields.io/github/languages/code-size/LanikSJ/homebrew-tap)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/LanikSJ/homebrew-tap)
+![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/LanikSJ/homebrew-tap)
 
 - [Description](#-description)
 - [Casks](#-casks)
