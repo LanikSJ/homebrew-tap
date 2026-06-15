@@ -30,7 +30,7 @@ jobs:
 
       # Cache Homebrew downloads and taps to speed up CI
       - name: Cache Homebrew
-        uses: actions/cache@fe1055e9d167ff6b0247ec54ca5851b2701fe95c # v3.0.8
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
         with:
           path: |
             ~/Library/Caches/Homebrew
