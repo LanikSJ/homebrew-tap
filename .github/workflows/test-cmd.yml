@@ -45,19 +45,8 @@ jobs:
           brew tap laniksj/tap
 
       # Verify the brew sync cmd exists before running it
-      - name: Test Brew Sync Cmd (conditional)
-        run: |
-          if brew help sync >/dev/null 2>&1; then
-            brew sync --dry-run || true
-          else
-            echo "brew sync cmd not available, skipping"
-          fi
+      - name: Test Count Command
+        run: brew count
 
-      # Verify the brew count cmd exists before running it
-      - name: Test Brew Count Cmd (conditional)
-        run: |
-          if brew help count >/dev/null 2>&1; then
-            brew count
-          else
-            echo "brew count cmd not available, skipping"
-          fi
+      - name: Test Sync Command
+        run: brew sync --dry-run || true

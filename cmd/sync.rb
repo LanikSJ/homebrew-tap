@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require "abstract_command"
+
 # This script provides a simple sync operation for Homebrew.
 # It updates Homebrew and upgrades installed formulae.
 # Supports a `--dry-run` flag to show what would be executed without making changes.
