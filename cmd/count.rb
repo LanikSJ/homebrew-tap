@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require "abstract_command"
+
 # This script provides the custom Homebrew command `brew count`.
 # It simply counts the number of installed formulae/casks.
 
