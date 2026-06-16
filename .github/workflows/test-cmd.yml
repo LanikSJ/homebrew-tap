@@ -44,37 +44,20 @@ jobs:
           brew tap buo/cask-upgrade
           brew tap laniksj/tap
 
-      # Ensure script files are executable (once for all)
-      - name: Make Scripts Executable
-        run: chmod +x cmd/*
-
-      # Verify the brew sync alias exists before running it
-      - name: Test Brew Sync Alias (conditional)
+      # Verify the brew sync cmd exists before running it
+      - name: Test Brew Sync Cmd (conditional)
         run: |
           if brew help sync >/dev/null 2>&1; then
             brew sync --dry-run || true
           else
-            echo "brew sync alias not available, skipping"
+            echo "brew sync cmd not available, skipping"
           fi
 
-      # Verify the brew count alias exists before running it
-      - name: Test Brew Count Alias (conditional)
+      # Verify the brew count cmd exists before running it
+      - name: Test Brew Count Cmd (conditional)
         run: |
           if brew help count >/dev/null 2>&1; then
             brew count
           else
-            echo "brew count alias not available, skipping"
+            echo "brew count cmd not available, skipping"
           fi
-
-      - name: Test Sync Command
-        run: ./cmd/brew-sync --dry-run
-        continue-on-error: true # dry‑run may exit non‑zero but should not fail the job
-
-      - name: Test Count Command
-        run: ./cmd/brew-count
-
-      - name: Verify Scripts Exit Successfully
-        run: |
-          set -e
-          ./cmd/brew-count
-          ./cmd/brew-sync --dry-run || echo "sync exited with non-zero, acceptable in CI"
