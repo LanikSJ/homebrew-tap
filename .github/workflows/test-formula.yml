@@ -16,8 +16,8 @@ jobs:
     name: Test Homebrew Formula
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ ubuntu-latest, macos-latest ]
         include:
           - os: macos-latest
             arch: x86_64
@@ -29,11 +29,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
 
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@main # latest
+
+      - name: Cache Homebrew
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/Library/Caches/Homebrew
+            $(brew --repo)/Library/Taps
+          key: ${{ runner.os }}-homebrew-${{ github.sha }}
+
+      - name: Add and trust Homebrew tap
+        run: |
+          brew tap laniksj/tap
 
       - name: Install formula dependencies
         run: |
@@ -47,7 +57,7 @@ jobs:
             echo "Testing formula: $formula"
             # Extract formula name from file path
             formula_name=$(basename "$formula" .rb)
-            
+
             # Skip macOS-only formulas on Linux
             if [[ "$RUNNER_OS" == "Linux" ]]; then
               if grep -q "depends_on :macos" "$formula"; then
@@ -55,24 +65,24 @@ jobs:
                 continue
               fi
             fi
-            
+
             # Install the formula from the current tap
             brew install --build-from-source "laniksj/tap/$formula_name" || {
               echo "Failed to install $formula_name"
               exit 1
             }
-            
+
             # Make the binary executable before testing (for Linux compatibility)
             if [ -f "/home/linuxbrew/.linuxbrew/bin/$formula_name" ]; then
               chmod +x "/home/linuxbrew/.linuxbrew/bin/$formula_name"
             fi
-            
+
             # Test the formula
             brew test "$formula_name" || {
               echo "Failed to test $formula_name"
               exit 1
             }
-            
+
             # Uninstall the formula
             brew uninstall "$formula_name"
           done
@@ -91,12 +101,26 @@ jobs:
   validate-formula:
     name: Validate Formula
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@main # latest
+
+      - name: Cache Homebrew
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/Library/Caches/Homebrew
+            $(brew --repo)/Library/Taps
+          key: ${{ runner.os }}-homebrew-${{ github.sha }}
+
+      - name: Add and trust Homebrew tap
+        run: |
+          brew tap laniksj/tap
 
       - name: Validate formula with brew audit
         run: |
@@ -105,7 +129,7 @@ jobs:
             echo "Auditing formula: $formula"
             # Extract formula name from file path
             formula_name=$(basename "$formula" .rb)
-            brew audit --new "$formula_name" || {
+            brew audit --strict "laniksj/tap/$formula_name" || {
               echo "Audit failed for $formula_name"
               exit 1
             }
