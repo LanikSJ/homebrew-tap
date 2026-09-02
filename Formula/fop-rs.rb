@@ -2,43 +2,39 @@ class FopRs < Formula
   desc "Rust-based filter list optimizer for AdBlockers"
   homepage "https://github.com/ryanbr/fop-rs"
 
+  version = "5.4.0"
+
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/ryanbr/fop-rs/releases/download/v5.3.2/fop-5.3.2-macos-arm64"
-      sha256 "62e43cccf3be6510b71bb3f179d07f2361293e5a10b7d7a606c659047240e999"
+      url "https://github.com/ryanbr/fop-rs/releases/download/v#{version}/fop-#{version}-macos-arm64"
+      sha256 "a64ec55c602f79663dd30c30668818a059669b4605f12b0f84b48a0a33ac5414"
     else
-      url "https://github.com/ryanbr/fop-rs/releases/download/v5.3.2/fop-5.3.2-macos-x86_64"
-      sha256 "bd2a60deb7c142e3f54deba58747d5df3007a422f442dcde2d294e138ee6bd2e"
+      url "https://github.com/ryanbr/fop-rs/releases/download/v#{version}/fop-#{version}-macos-x86_64"
+      sha256 "852da02181f605011f793b09766b748e358cedebfb03e495f23f6277112002ff"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/ryanbr/fop-rs/releases/download/v5.3.2/fop-5.3.2-linux-arm64"
-      sha256 "a1152ba15f1661ab9a5f03574180052f48fb293528c7387be214ce5b983c0373"
+      url "https://github.com/ryanbr/fop-rs/releases/download/v#{version}/fop-#{version}-linux-arm64"
+      sha256 "a4a933e5356572b177e2839f543b5bebe1418bdeea61fd27c2cf39725c8492a6"
     else
-      url "https://github.com/ryanbr/fop-rs/releases/download/v5.3.2/fop-5.3.2-linux-x86_64"
-      sha256 "631b5c93674be22fcdd38292a5a3c72786901781c41876747bc5ebbea5277cc0"
+      url "https://github.com/ryanbr/fop-rs/releases/download/v#{version}/fop-#{version}-linux-x86_64"
+      sha256 "cf1c2b5fd6f6207427c21ba012cde053cf4cd7ccd2ac973a44ebd88bc614a002"
     end
   end
 
   def install
-    # Determine the correct binary name based on platform and architecture
-    version = "5.3.2"
-    binary_name = OS.mac? ? "fop-#{version}-macos-#{Hardware::CPU.arch}" : "fop-#{version}-linux-#{Hardware::CPU.arch}"
-
-    # Install the binary
+    os = OS.mac? ? "macos" : "linux"
+    binary_name = "fop-#{version}-#{os}-#{Hardware::CPU.arch}"
     bin.install binary_name
     bin.install_symlink binary_name => "fop"
     bin.install_symlink "fop" => "fop-rs"
   end
 
   test do
-    # Test that the binary exists and is executable
     assert_path_exists bin/"fop"
     assert_predicate bin/"fop", :executable?
-
-    # Test basic functionality
     output = shell_output("#{bin}/fop --help")
     assert_match "FOP - Filter Orderer and Preener", output
   end
