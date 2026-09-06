@@ -19,7 +19,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Homebrew Bump Cask (LanikSJ)
-        uses: LanikSJ/homebrew-bump-cask@39b936ccc3814f377d18b979f82640eafaacbe32 # v2
+        uses: LanikSJ/homebrew-bump-cask@2d76e87b3c4274c7e8faea05806ba47111526d1f # v3
         with:
           # Authentication token to use for pushing changes; use the built-in GITHUB_TOKEN or define a HOMEBREW_TOKEN secret
           token: ${{ secrets.HOMEBREW_TOKEN }}
