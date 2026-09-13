@@ -26,6 +26,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           user_name: ${{ github.actor }}
           user_email: ${{ github.actor }}@users.noreply.github.com
+          # Push the bump branch directly to this repo and open the PR here,
+          # instead of forking. The built-in GITHUB_TOKEN cannot create forks
+          # ("Resource not accessible by integration"); --no-fork avoids that.
+          no_fork: true
           # Bump all outdated casks in this tap
           tap: laniksj/homebrew-tap
           # Bump only these formulae if outdated
