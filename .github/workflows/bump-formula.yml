@@ -4,9 +4,6 @@ on:
   # Schedule to run at 4AM and 4PM PST everyday
   schedule:
     - cron: "0 4,16 * * *"
-  push:
-    paths:
-      - ".github/workflows/bump-formula.yml"
   workflow_dispatch:
 
 permissions:
@@ -30,6 +27,9 @@ jobs:
           # instead of forking. The built-in GITHUB_TOKEN cannot create forks
           # ("Resource not accessible by integration"); --no-fork avoids that.
           no_fork: true
+          # Force: delete any stale bump branch from a prior run before
+          # recreating it, and skip the duplicate-PR check.
+          force: true
           # Bump all outdated casks in this tap
           tap: laniksj/homebrew-tap
           # Bump only these formulae if outdated
