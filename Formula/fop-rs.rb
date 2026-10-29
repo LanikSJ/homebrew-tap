@@ -2,25 +2,25 @@ class FopRs < Formula
   desc "Rust-based filter list optimizer for AdBlockers"
   homepage "https://github.com/ryanbr/fop-rs"
 
-  version = "6.1.1"
+  version = "6.2.0"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/ryanbr/fop-rs/releases/download/v#{version}/fop-#{version}-macos-arm64"
-      sha256 "162a06c8009fe89607dce30a6ec077abf70533295e27f5b8ba9b2969a1f8b489"
+      sha256 "3445f980c86da859bb01be680eaeebc0a32125cf026ac5d68121ba61862b8035"
     else
       url "https://github.com/ryanbr/fop-rs/releases/download/v#{version}/fop-#{version}-macos-x86_64"
-      sha256 "2b2481f02d284c122f32dac8a939c35f2080494ebfeab392c22b126016eb34d2"
+      sha256 "a9d7c20bb3aa8256a66454ce97aeca3c721f247dbaf6f4388e4eb681e00235fc"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/ryanbr/fop-rs/releases/download/v#{version}/fop-#{version}-linux-arm64"
-      sha256 "9e11c1b267dae6a2da17404b2e859481602577e949caf90d12e38d51cba6777f"
+      sha256 "f73aaa9dbfe3360d6b8f12acc5c0c73e1fb2d61fd81c826d0be96360296d3497"
     else
       url "https://github.com/ryanbr/fop-rs/releases/download/v#{version}/fop-#{version}-linux-x86_64"
-      sha256 "7c7c481b6c75084213a5d60f8c354741aa597a349c5066f09f6d7e46df58fa85"
+      sha256 "92ec9dd0e8ae0e392079c89d8c099f87b2ece8bab28ba09e3e1b7c2bf7cd2989"
     end
   end
 
