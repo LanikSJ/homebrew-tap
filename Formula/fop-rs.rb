@@ -2,7 +2,7 @@ class FopRs < Formula
   desc "Rust-based filter list optimizer for AdBlockers"
   homepage "https://github.com/ryanbr/fop-rs"
 
-  version = "6.2.2"
+  version "6.2.2"
 
   on_macos do
     if Hardware::CPU.arm?
